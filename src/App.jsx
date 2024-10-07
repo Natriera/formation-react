@@ -1,20 +1,34 @@
-import React from 'react';
-import CategoryList from './bdd/bookCategoryList'; // Import du composant BookListType
-import './design/app/App.css'; // Chemin vers le fichier CSS principal
+import React, { useState } from 'react';
+import HomePage from './pages/homePage';
+//import AboutPage from './pages/AboutPage';
+//import SettingsPage from './pages/SettingsPage';
+import './design/app/App.css'; // Pour les styles généraux
 
-// Import des composants boutons et modals
-import ButtonClassic from './components/buttons/ButtonClassic';
-import ModalClassic from './components/modal/modalClassic';
+const App = () => {
+  const [activeTab, setActiveTab] = useState('home');
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header" style={{marginTop : '20px'}}>
-        <h1>Ma bibliothèque</h1>
-      </header>
-      <CategoryList /> {/* Gérer la liste des types de livres */}
+    <div className="app-container">
+      {/* Barre latérale gauche */}
+      <div className="sidebar">
+        <button onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'active' : ''}>
+          Accueil
+        </button>
+        <button onClick={() => setActiveTab('about')} className={activeTab === 'about' ? 'active' : ''}>
+          À propos
+        </button>
+        <button onClick={() => setActiveTab('settings')} className={activeTab === 'settings' ? 'active' : ''}>
+          Paramètres
+        </button>
+      </div>
+
+      {/* Contenu principal */}
+      <div className="content">
+        {activeTab === 'home' && <HomePage />}
+      
+      </div>
     </div>
   );
-}
+};
 
 export default App;
