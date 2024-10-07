@@ -1,0 +1,17 @@
+.App {
+    text-align: center;
+  }
+    
+
+.div-container-align-right {
+  display: flex;
+  justify-content: flex-end; /* Aligne le bouton à droite */
+  margin-right: 40px;
+}
+
+div-container-align-center {
+  display: flex;
+}
+
+
+

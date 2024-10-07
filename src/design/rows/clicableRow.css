@@ -1,0 +1,52 @@
+
+
+
+/* Style de base pour chaque ligne cliquable */
+.clicable-row {
+  border: 1px solid #ddd;
+  padding-top: 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 95%; /* Assure-toi que la largeur est définie */
+  margin: 0 auto; /* Centre horizontalement */
+  box-sizing: border-box;
+  text-align: center; /* Centre le texte à l'intérieur de la div */
+  margin-bottom: 10px;
+}
+
+
+/* Couleur lorsqu'il est fermé */
+.clicable-row.closed {
+  background-color: #f9f9f9; /* Couleur claire lorsqu'il est fermé */
+  padding-bottom: 15px;
+}
+
+/* Couleur lorsqu'il est ouvert */
+.clicable-row.open {
+  background-color: #b2dffb; /* Couleur différente lorsqu'il est ouvert */
+  padding-bottom: 0px;
+}
+
+/* Effet de survol */
+.clicable-row:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Légère ombre au survol */
+}
+
+.div-container-bloc {
+  display: flex;
+  justify-content: space-between; /* Espace entre les deux éléments */
+  align-items: stretch; /* Assure que les éléments aient la même hauteur */
+  gap: 10px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.div-open-category {
+  align-items: center;
+  margin: 0 auto; /* Centre horizontalement */
+  padding: 10px;
+  background-color: rgb(230, 212, 189);
+  width: 100%;
+  border-radius: 0px 0px 20px 20px;
+
+}

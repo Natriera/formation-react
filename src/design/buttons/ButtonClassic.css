@@ -1,0 +1,24 @@
+.btn-classic {
+  padding: 10px 20px;
+  border: 2px solid #b2dffb;
+  background-color: white;
+  color: #b2dffb;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  margin: 10px;
+}
+
+.btn-classic:hover {
+  background-color: #b2dffb;
+  color: white;
+}
+
+.btn-classic:disabled {
+  background-color: #ccc;
+  color: #666;
+  border: 2px solid #ccc;
+  cursor: not-allowed;
+}

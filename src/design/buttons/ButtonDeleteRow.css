@@ -1,0 +1,30 @@
+/* Styles pour le bouton classique */
+.btn-delete {
+    padding: 5px;
+    background-color: transparent;
+    color: #000000;
+    border: 0px;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    justify-self: flex-end;
+
+  }
+  
+  .btn-delete:hover {
+    background-color: #636363;
+    color: white;
+    border-radius: 100%;
+    padding: 0px 5px;
+
+  }
+  
+  .btn-delete:disabled {
+    background-color: #ccc;
+    color: #666;
+    border: 2px solid #ccc;
+    cursor: not-allowed;
+  }
+  
