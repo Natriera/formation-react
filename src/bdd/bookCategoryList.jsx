@@ -101,33 +101,26 @@ const CategoryList = () => {
   
 
   return (
-    <div>
-      <p>Mes catégories</p> 
-      <div>
-        <div className='div-container-align-right'>
+    <div className="category-list-container"  style={{ width: '100%' }}>
+      <div className="div-container-align-right">
+        <div style={{ width: '45%' , marginRight: "2.5%"}}>
           <InputText 
-              type="text" 
-              placeholder="Rechercher parmi tous les livres" 
-              value={searchAllBooks} 
-              onChange={(e) => setSearchAllBooks(e.target.value)} 
-              style = {{marginRight: '0px'}}
+            type="text" 
+            placeholder="Rechercher parmi tous les livres" 
+            value={searchAllBooks} 
+            onChange={(e) => setSearchAllBooks(e.target.value)} 
           />
-        </div>
-
-        {searchAllBooks.length > 0 && filteredBooks.length > 0 && (
-        <div className='div-container-align-center' style = {{width : '95%', marginLeft:'2.5%', border:'1px solid blue', borderRadius:'10px', padding:'10px', marginBottom:'10px', position:'absolute', backgroundColor:'white'}}>
-          <h5>Ma recherche</h5>
-          {/* Contenu de la div qui apparaît seulement si searchAllBooks.length > 0 */}
-            {filteredBooks.map((book) => (
-            <RowType 
-              key={book.id} 
-              book={book} 
-          />
-            ))
-          }
-        </div>
-        )}
+        </div>  
       </div>
+
+      {searchAllBooks.length > 0 && filteredBooks.length > 0 && (
+        <div className='div-container-align-center' style={{ width: '95%', marginLeft: '2.5%', border: '1px solid blue', borderRadius: '10px', padding: '10px', marginBottom: '10px', backgroundColor: 'white' }}>
+          <h5>Ma recherche</h5>
+          {filteredBooks.map((book) => (
+            <RowType key={book.id} book={book} />
+          ))}
+        </div>
+      )}
       <div>
         {categories.map((category) => (
           <ClicableRow 
@@ -135,23 +128,19 @@ const CategoryList = () => {
             category={category} 
             books={category.books}
             isOpen={openRowId === category.id}
-            onAddBook={(newBook) => addBookToCategory(category.id, newBook)} // Passe la fonction d'ajout
+            onAddBook={(newBook) => addBookToCategory(category.id, newBook)}
             onDeleteBook={deleteBookFromCategory}
             onToggle={() => handleToggleRow(category.id)}
           />
         ))}
       </div>
-      
 
-      <div className = 'div-container-align-right'>
+      <div className='div-container-align-right'>
         <ButtonClassic 
           label="Ajouter une catégorie" 
           onClick={() => setIsModalOpen(true)}
-          
         />
       </div>
-    
-      
       <ModalClassic isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Ajouter une catégorie</h2>
         <InputText 
@@ -161,11 +150,12 @@ const CategoryList = () => {
           onChange={(e) => setNewCategoryText(e.target.value)} 
         />
         <ButtonClassic 
-            label="Ajouter" 
-            onClick={handleAddCategory}
-          />
+          label="Ajouter" 
+          onClick={handleAddCategory}
+        />
       </ModalClassic>
     </div>
+
   );
 };
 

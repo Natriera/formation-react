@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import HomePage from './pages/homePage';
 import SettingsPage from './pages/settings'
+import { RowSettingsProvider } from './contexts/RowSettingsContext';
+
 //import AboutPage from './pages/AboutPage';
 import './design/app/App.css'; // Pour les styles généraux
 
@@ -23,10 +25,12 @@ const App = () => {
       </div>
 
       {/* Contenu principal */}
-      <div className="content">
-        {activeTab === 'home' && <HomePage />}
-        {activeTab === 'settings' && <SettingsPage />}
-      </div>
+      <RowSettingsProvider>
+        <div className="content">
+          {activeTab === 'home' && <HomePage />}
+          {activeTab === 'settings' && <SettingsPage />}
+        </div>
+      </RowSettingsProvider>
     </div>
   );
 };

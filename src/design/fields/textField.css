@@ -1,11 +1,15 @@
 .text-field {
   padding: 10px;
-  margin: 10px; 
+  padding-right: 30px; /* Laisse de la place pour la croix à droite */
+  margin: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  width: 100%; /* Prend toute la largeur disponible du conteneur */
+
   box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
+
 
 .text-field:focus {
   border-color: #4CAF50;
@@ -14,19 +18,21 @@
 
 .text-field-container {
   position: relative;
-  width: 100%;
-}
+  display: inline-block; /* Ajuste selon ton besoin de mise en page */
+  width: 100%; /* Ajuste la largeur si nécessaire */
+  display: inline-flex; /* Aligne les éléments sur la même ligne */
 
+}
 
 .clear-icon {
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 16px;
   color: gray;
-  /* Ajoute un hover pour améliorer l'expérience utilisateur */
+  /* Autres styles */
 }
 
 .clear-icon:hover {

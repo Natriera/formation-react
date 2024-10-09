@@ -1,9 +1,11 @@
-import React, { useState } from 'react'; // Ajout de useState
+import React, { useState , useContext} from 'react'; // Ajout de useState
 import '../../design/rows/clicableRow.css'; // Chemin vers le fichier CSS
 import RowType from '../../components/rows/RowType'; // Lien vers RowType
 import ButtonClassic from '../../components/buttons/ButtonClassic'; // Lien vers le bouton
 import ModalClassic from '../../components/modal/modalClassic'; // Lien vers la modal
 import InputText from '../../components/fields/text-field'; // Lien vers le champ de texte
+import { RowSettingsContext } from '../../contexts/RowSettingsContext';
+
 
 const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggle }) => {
 
@@ -11,6 +13,10 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
   const [newBookText, setNewBookText] = useState('');
   const [bookSearch, setBookSearch] = useState('');
 
+
+  const {
+    rowHeaderColor, rowBodyColor,rowPaddingTop, rowMarginBottom, borderRadius
+    } = useContext(RowSettingsContext);
 
   const handleClick = () => {
     onToggle(); // Bascule entre ouvrir et fermer la div
@@ -34,24 +40,31 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
   return (
     <div>
       {/* Ligne cliquable pour la catégorie */}
-      <div className={`clicable-row ${isOpen ? 'open' : 'closed'}`} >
+      <div 
+        className={`clicable-row ${isOpen ? 'open' : 'closed'}`} 
+        style={{
+          paddingTop: `${rowPaddingTop}px`, 
+          borderRadius: `${borderRadius}px`, 
+          backgroundColor: isOpen ? rowHeaderColor : 'inherit',
+          marginBottom:`${rowMarginBottom}px`
+        }} 
+      >
         <div style={{paddingBottom : '10px', cursor: 'pointer'}}   onClick={handleClick} >
         {category.title}
         </div>
 
         {isOpen && (
         <>
-          <div className='div-open-category'>
+          <div className='div-open-category' style={{backgroundColor:`${rowBodyColor}`, borderBottomLeftRadius:`${borderRadius}px`,borderBottomRightRadius: `${borderRadius}px`}}>
             <div className="div-container-bloc" >
               <ButtonClassic 
-                  style={{ width: '48%' }} // Style en ligne
                   label="Ajouter un livre" 
                   value={newBookText}
                   onClick={handleClickAddBook}
+                  style={{width : '90%'}}
                 />
                 <InputText 
                   type="text" 
-                  style={{width: '48%'}}
                   placeholder="Rechercher un livre" 
                   value={bookSearch} 
                   onChange={(e) => setBookSearch(e.target.value)} 
