@@ -4,10 +4,8 @@ import CategoryList from '../bdd/bookCategoryList'; // Import du composant BookL
 
 const HomePage = () => {
   return (
-    <div className="App">
-      <header className="App-header" style={{marginTop : '20px'}}>
-        <h1>Ma bibliothèque</h1>
-      </header>
+    <div >
+      <h2>Ma bibliothèque</h2>
       <CategoryList /> {/* Gérer la liste des types de livres */}
     </div>
   );

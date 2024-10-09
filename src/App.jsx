@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import HomePage from './pages/homePage';
+import SettingsPage from './pages/settings'
 //import AboutPage from './pages/AboutPage';
-//import SettingsPage from './pages/SettingsPage';
 import './design/app/App.css'; // Pour les styles généraux
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
       {/* Contenu principal */}
       <div className="content">
         {activeTab === 'home' && <HomePage />}
-      
+        {activeTab === 'settings' && <SettingsPage />}
       </div>
     </div>
   );

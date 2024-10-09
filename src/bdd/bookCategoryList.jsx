@@ -102,7 +102,7 @@ const CategoryList = () => {
 
   return (
     <div>
-      <h2>Mes catégories</h2> 
+      <p>Mes catégories</p> 
       <div>
         <div className='div-container-align-right'>
           <InputText 
