@@ -24,6 +24,9 @@ const CategoryList = () => {
   const [categories, setCategories] = useState(() => loadFromLocalStorage('categories') || []);
   const [compteurCat, setCompteurCat] = useState(() => loadFromLocalStorage('compteurCat') || 0);
 
+  const [visibleBooksSearchCount, setVisibleBooksSearchCount] = useState(4); // Affiche initialement 4 livres
+
+
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCategoryText, setNewCategoryText] = useState('');
@@ -56,6 +59,9 @@ const CategoryList = () => {
     // Ici, on effectue le filtrage des livres selon la recherche
     return allBooks.filter(book => book.title.toLowerCase().includes(searchAllBooks.toLowerCase()));
   }, [allBooks, searchAllBooks]); // Le filtre ne s'exécute que si `books` ou `searchTerm` change
+
+
+  const visibleBooks = filteredBooks.slice(0, visibleBooksSearchCount);
 
   const [openRowId, setOpenRowId] = useState(null)
 
@@ -129,11 +135,23 @@ const CategoryList = () => {
       {searchAllBooks.length > 0 && filteredBooks.length > 0 && (
         <div className='div-container-align-center' style={{ width: '95%', marginLeft: '2.5%', border: '1px solid blue', borderRadius: '10px', padding: '10px', marginBottom: '10px', backgroundColor: 'white' }}>
           <h5>Ma recherche</h5>
-          {filteredBooks.map((book) => (
-            <RowType key={book.id} book={book} />
-          ))}
-        </div>
+            <div
+              className="book-list"
+              style={{ maxHeight: '180px', overflowY: 'auto' }}
+              onScroll={(e) => {
+                const { scrollTop, scrollHeight, clientHeight } = e.target;
+                if (scrollTop + clientHeight >= scrollHeight) {
+                  setVisibleBooksSearchCount((prev) => Math.min(prev + 2, filteredBooks.length));
+                }
+              }}
+              >
+              {visibleBooks.map((book) => (
+                <RowType key={book.id} book={book} />
+              ))}
+            </div>
+          </div>
       )}
+
       <div>
         {currentCategories.map((category) => (
           <ClicableRow 

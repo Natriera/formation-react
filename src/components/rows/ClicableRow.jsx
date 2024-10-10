@@ -1,4 +1,4 @@
-import React, { useState , useContext} from 'react'; // Ajout de useState
+import React, { useState , useContext, useEffect} from 'react'; // Ajout de useState
 import '../../design/rows/clicableRow.css'; // Chemin vers le fichier CSS
 import RowType from '../../components/rows/RowType'; // Lien vers RowType
 import ButtonClassic from '../../components/buttons/ButtonClassic'; // Lien vers le bouton
@@ -13,6 +13,19 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
   const [newBookText, setNewBookText] = useState('');
   const [bookSearch, setBookSearch] = useState('');
 
+  const [visibleBooksCount, setVisibleBooksCount] = useState(4); // Affiche initialement 4 livres
+
+  useEffect(() => {
+    setVisibleBooksCount(4); // Remet à 4 à chaque fois que la recherche change
+  }, [bookSearch]);
+  
+
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(bookSearch.toLowerCase())
+  );
+  
+  const visibleBooks = filteredBooks.slice(0, visibleBooksCount);
 
   const {
     rowHeaderColor, rowBodyColor,rowPaddingTop, rowMarginBottom, borderRadius
@@ -25,7 +38,7 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
   const handleAddBook = () => {
     if (newBookText.trim() === '') return;
 
-    const newBook = { id: category.compteur, title: newBookText }; // Nouveau livre (book)
+    const newBook = { id: `${category.id}_${category.compteur}`, title: newBookText }; // Nouveau livre (book)
     onAddBook(newBook); // Appelle la fonction d'ajout
 
     setNewBookText(''); // Réinitialiser le champ
@@ -70,20 +83,27 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
                   onChange={(e) => setBookSearch(e.target.value)} 
               />
             </div>
-              <div>
-                {books
-                  .filter((book) => 
-                  book.title.toLowerCase().includes(bookSearch.toLowerCase()) // Filtre en fonction de la recherche
-                  )
-                  .map((book) => (
-                  <RowType 
-                    categoryId={category.id}
-                    key={book.id} 
-                    book={book} 
-                    deleteRowFunction={onDeleteBook}
-                  /> 
-                ))}
-              </div> 
+            <div
+              className="book-list"
+              style={{ height: '180px', overflowY: 'auto' }}
+              onScroll={(e) => {
+                const { scrollTop, scrollHeight, clientHeight } = e.target;
+                if (scrollTop + clientHeight >= scrollHeight) {
+                  setVisibleBooksCount((prev) => Math.min(prev + 2, filteredBooks.length));
+                }
+              }}
+            >
+              {visibleBooks.map((book) => (
+                <RowType
+                  key={book.id}
+                  book={book}
+                  categoryId={category.id}
+                  deleteRowFunction={onDeleteBook}
+                />
+              ))}
+            </div>
+
+              
           </div>
         </>
       )}
