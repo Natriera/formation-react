@@ -1,0 +1,24 @@
+.btn-pagination {
+  padding: 3px 6px;
+  border: 1px solid #d3d3d3;
+  background-color: white;
+  color: #d3d3d3;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  margin: 10px;
+}
+
+.btn-pagination:hover {
+  background-color: #b2dffb;
+  color: white;
+}
+
+.btn-pagination:disabled {
+  background-color: #ccc;
+  color: #666;
+  border: 2px solid #ccc;
+  cursor: not-allowed;
+}

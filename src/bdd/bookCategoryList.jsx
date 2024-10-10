@@ -4,6 +4,7 @@ import ModalClassic from '../components/modal/modalClassic'; // Lien vers la mod
 import InputText from '../components/fields/text-field'; // Lien vers la modal
 import ClicableRow from '../components/rows/ClicableRow'; // Lien vers la modal
 import RowType from '../components/rows/RowType'; // Lien vers RowType
+import ButtonPagination from '../components/buttons/ButtonPagination'; // Lien vers le bouton
 
 
 const CategoryList = () => {
@@ -28,6 +29,18 @@ const CategoryList = () => {
   const [newCategoryText, setNewCategoryText] = useState('');
   const [searchAllBooks, setSearchAllBooks] = useState('');
 
+    // État pour la pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5; // Nombre de catégories par page
+
+  // Calcul des indices pour la pagination
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+
+  // Découpe des catégories à afficher sur la page actuelle
+  const currentCategories = categories.slice(indexOfFirstRow, indexOfLastRow);
+  
+  
 
 
   const allBooks = useMemo(() => {
@@ -122,7 +135,7 @@ const CategoryList = () => {
         </div>
       )}
       <div>
-        {categories.map((category) => (
+        {currentCategories.map((category) => (
           <ClicableRow 
             key={category.id} 
             category={category} 
@@ -134,11 +147,30 @@ const CategoryList = () => {
           />
         ))}
       </div>
-
-      <div className='div-container-align-right'>
+        <div className='div-container-align-right' >
+          <div className="pagination " style ={{marginRight:'2.5%' , paddingTop:'20px'}}>
+            <ButtonPagination 
+              label="Précedente" 
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            />
+            <div  >
+              <span style={{ display: 'flex', alignItems: 'center', height: '100%' }} >Page {currentPage}</span>
+            </div>
+            
+            <ButtonPagination 
+              label="Suivante" 
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={indexOfLastRow >= categories.length}
+            />
+           
+          </div>
+        </div> 
+      <div className='div-container-align-right' >
         <ButtonClassic 
           label="Ajouter une catégorie" 
           onClick={() => setIsModalOpen(true)}
+          style ={{marginRight:'2.5%'}}
         />
       </div>
       <ModalClassic isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
