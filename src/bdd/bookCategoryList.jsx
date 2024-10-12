@@ -117,6 +117,25 @@ const CategoryList = () => {
       )
     );
   };
+
+  const updateBook = (categoryId, updatedBook) => {
+    // Mise à jour de l'état 'categories'
+    setCategories(prevCategories =>
+      // On parcourt les catégories actuelles
+      prevCategories.map(category =>
+        // Si la catégorie correspond à l'ID passé en paramètre
+        category.id === categoryId
+          ? {
+              ...category, // On garde les propriétés actuelles de la catégorie
+              books: category.books.map(book =>
+                // On met à jour uniquement le livre qui correspond à l'ID du livre mis à jour
+                book.id === updatedBook.id ? updatedBook : book
+              ),
+            }
+          : category // Si ce n'est pas la bonne catégorie, on ne fait rien, on la retourne telle quelle
+      )
+    );
+  };
   
 
   return (
@@ -162,10 +181,20 @@ const CategoryList = () => {
             onAddBook={(newBook) => addBookToCategory(category.id, newBook)}
             onDeleteBook={deleteBookFromCategory}
             onToggle={() => handleToggleRow(category.id)}
+            onUpdateBook={(updatedBook)=> updateBook(category.id, updatedBook)}
           />
         ))}
       </div>
-        <div className='div-container-align-right' >
+
+
+      <div style={{display:'flex', margin:'2.5%'}}>
+        <div style={{flex:'1'}}>
+          <ButtonClassic 
+            label="Ajouter une catégorie" 
+            onClick={() => setIsModalOpen(true)}
+          />
+        </div>
+        <div className='div-container-align-right' style={{flex:'1'}} >
           <div className="pagination " style ={{marginRight:'2.5%' , paddingTop:'20px'}}>
             <ButtonPagination 
               label="Précedente" 
@@ -184,13 +213,9 @@ const CategoryList = () => {
            
           </div>
         </div> 
-      <div className='div-container-align-right' >
-        <ButtonClassic 
-          label="Ajouter une catégorie" 
-          onClick={() => setIsModalOpen(true)}
-          style ={{marginRight:'2.5%'}}
-        />
       </div>
+        
+      
       <ModalClassic isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Ajouter une catégorie</h2>
         <InputText 
