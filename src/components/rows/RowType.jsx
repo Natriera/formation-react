@@ -18,8 +18,6 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
   const [newBookTitle, setNewBookTitle] = useState('');
   const [newBookDesc, setNewBookDesc] = useState('');
 
-  const [udpatedBook, setUpdatedBook] = useState();
-
   const handleUpdateBook = () => {
     
     const udpatedBook = { id: book.id, title: newBookTitle, resume: newBookDesc}

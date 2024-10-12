@@ -1,5 +1,5 @@
 /* Le fond sombre derrière la modal */
-.modal-overlay {
+.modal-medium-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
 }
 
 /* Le contenu de la modal, qui agit comme une pop-up */
-.modal-content {
+.modal-medium-content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -27,7 +27,7 @@
 }
 
 /* L'effet au moment où la modal apparaît */
-.modal-overlay.modal-enter {
+.modal-medium-overlay.modal-enter {
   opacity: 0;
   transform: scale(0.7); /* Démarre plus petit pour donner un effet de "zoom" */
 }
