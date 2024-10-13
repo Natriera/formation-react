@@ -1,0 +1,28 @@
+.list-deroulante-container {
+  position: relative;
+  display: inline-block;
+  width: 100%; 
+  display: inline-flex;
+}
+
+.list-deroulante {
+  padding: 10px;
+  margin-bottom: 10px;
+  padding-right: 30px; /* Laisse de la place pour la flèche à droite */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Prend toute la largeur disponible du conteneur */
+  appearance: none; /* Supprime la flèche par défaut */
+  -webkit-appearance: none; /* Pour Safari */
+}
+
+.list-deroulante-container::after {
+  content: 'ᐯ'; /* Flèche personnalisée */
+  font-size: 12px;
+  position: absolute;
+  right: 10px; /* Positionne la flèche à 10px du bord droit */
+  top: 40%;
+  transform: translateY(-50%); /* Centre la flèche verticalement */
+  pointer-events: none; /* La flèche ne capture pas les événements de clic */
+}

@@ -1,0 +1,23 @@
+.color-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Espace entre les entrées */
+    width: 100%;
+  }
+  
+  
+  .color-input {
+    width: 100%; /* Largeur du carré de sélection de couleur */
+    height: 50px; /* Hauteur du carré de sélection de couleur */
+    border: 2px solid #ddd; /* Bordure légère autour de l'input */
+    border-radius: 8px; /* Coins arrondis */
+    background-color: #fff;
+    cursor: pointer; /* Change le curseur au survol */
+    transition: all 0.3s ease; /* Animation fluide au survol */
+  }
+  
+  
+  .color-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Ombre légère lors du focus */
+  }

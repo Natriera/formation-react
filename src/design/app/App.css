@@ -45,6 +45,8 @@ div-container-align-center {
   flex-direction: column;
   padding: 10px;
   border-right: 1px solid #ddd;
+  height: 100vh; /* Assure que la sidebar prend toute la hauteur de la fenêtre */
+
 }
 
 .sidebar button {
@@ -71,5 +73,7 @@ div-container-align-center {
   flex: 1;
   padding: 20px;
   background: #fff;
+  overflow-y: auto; /* Permet au contenu de défiler si nécessaire */
+
 }
 
