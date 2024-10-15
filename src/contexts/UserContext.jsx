@@ -16,6 +16,15 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
+  /*const [users, setUsers] = useState(
+    [{
+      id:1,
+      name:'user1',
+      favorites:[]
+    }]
+
+  )*/
+
   // Initialiser la liste des utilisateurs avec les utilisateurs par défaut ou ceux dans le localStorage
   const [users, setUsers] = useState(() => loadFromLocalStorage('users'||[]));
 
