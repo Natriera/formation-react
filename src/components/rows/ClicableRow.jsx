@@ -50,6 +50,7 @@ const ClicableRow = ({ category, books, onAddBook, onDeleteBook, isOpen, onToggl
     onAddBook(newBook); // Appelle la fonction d'ajout
 
     setNewBookText(''); // Réinitialiser le champ
+    setNewBookDesc('');
     setIsModalOpen(false); // Fermer la modal
   };
 

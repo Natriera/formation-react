@@ -21,11 +21,11 @@ const SettingsPage = () => {
   } = useContext(RowSettingsContext);
 
     // Récupération des utilisateurs et de l'utilisateur courant depuis UserContext
-    const { users, currentUser, setCurrentUser } = useContext(UserContext);
+    const { users, currentUserId, setCurrentUserId } = useContext(UserContext);
 
     const handleUserChange = (e) => {
       const selectedUser = users.find(user => user.id === parseInt(e.target.value));
-      setCurrentUser(selectedUser);
+      setCurrentUserId(selectedUser.id);
     };
 
     
@@ -35,8 +35,9 @@ const SettingsPage = () => {
     <div>
       <h2>Paramètres</h2>
 
-      <p>Connecté en tant que : {currentUser.name}</p>
-      <ListeDeroulanteField options={users} value={currentUser.id} onChange={handleUserChange}>
+      <p>Connecté en tant que : {users.filter((user) => user.id==currentUserId).map((user) => (user.name))} </p>
+
+      <ListeDeroulanteField options={users} value={currentUserId} onChange={handleUserChange}>
         {users.map(user => (
           <option key={user.id} value={user.id}>
             {user.name}
