@@ -30,14 +30,14 @@ export const UserProvider = ({ children }) => {
 
   )*/
 
-  //const [currentUserId, setCurrentUserId] = useState("0");
+  //const [currentUserId, setCurrentUserId] = useState("1");
 
 
   // Initialiser la liste des utilisateurs avec les utilisateurs par défaut ou ceux dans le localStorage
   const [users, setUsers] = useState(() => loadFromLocalStorage('users'||[]));
 
   // Initialiser l'utilisateur avec celui du localStorage ou le premier utilisateur de la liste
-  const [currentUserId, setCurrentUserId] = useState(() => loadFromLocalStorage('currentUser', "0"));
+  const [currentUserId, setCurrentUserId] = useState(() => loadFromLocalStorage('currentUserId', 1));
 
   // Sauvegarder les utilisateurs dans le localStorage à chaque changement de la liste
   useEffect(() => {
@@ -45,9 +45,9 @@ export const UserProvider = ({ children }) => {
   }, [users]);
 
   // Sauvegarder l'utilisateur actuel dans le localStorage à chaque changement
-  /*useEffect(() => {
-    saveToLocalStorage('currentUser', currentUser);
-  }, [currentUser]);*/
+  useEffect(() => {
+    saveToLocalStorage('currentUserId', currentUserId);
+  }, [currentUserId]);
 
   return (
     <UserContext.Provider value={{ currentUserId, setCurrentUserId, users, setUsers }}>
