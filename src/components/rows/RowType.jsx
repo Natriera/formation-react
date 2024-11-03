@@ -7,6 +7,10 @@ import ButtonClassic from '../../components/buttons/ButtonClassic'; // Lien vers
 import InputText from '../../components/fields/text-field'; // Lien vers le champ de texte
 import InputAreaText from '../../components/fields/text-area'; // Lien vers le champ de texte
 import { RowSettingsContext } from '../../contexts/RowSettingsContext';
+import { UserContext } from '../../contexts/UserContext';
+
+import ButtonFav from '../../components/buttons/ButtonFav'; // Lien vers le bouton
+
 
 
 
@@ -27,6 +31,8 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
     
   };
 
+  
+
   const handleUpdateBookCanceled = () => {
     setIsUpdateModalOpen(false);
     setNewBookTitle('');
@@ -38,6 +44,10 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
     rowHeaderColor
     } = useContext(RowSettingsContext);
 
+  const {
+    users , currentUserId , setUsers
+    } = useContext(UserContext);
+
   const handleClickOpenDelete = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen); // Bascule entre ouvrir et fermer la div
   };
@@ -48,6 +58,23 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
   };
 
 
+  const handleFavClick = () => {
+    const isFav = users.find(user => user.id === currentUserId)?.favorites.some(favId => favId === book.id);
+
+    setUsers(prevUsers =>
+      prevUsers.map(user => {
+        if (user.id === currentUserId) {
+          return {
+            ...user,
+            favorites: isFav 
+              ? user.favorites.filter(favId => favId !== book.id) // Retire le livre des favoris
+              : [...user.favorites, book.id] // Ajoute le livre aux favoris
+          };
+        }
+        return user;
+      })
+    );
+  };
 
   return (
       <div className='div-book-row' style={{backgroundColor:`${rowHeaderColor}`}} >  
@@ -72,7 +99,16 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
         </ModalClassic>
 
         <ModalMedium isOpen={isUpdateModalOpen} onClose={handleUpdateBookCanceled}>
-          <h2 style={{marginLeft:'10px', marginBottom:'20px', textAlign:'left'}} >Modifier le livre {book.title}</h2>
+          <div className = "div-container-bloc">
+              <h2 style={{marginLeft:'10px', marginBottom:'20px', textAlign:'left'}} >Modifier le livre {book.title}</h2>
+            <div className = "div-container-align-right" style = {{width:'15%'}}>
+              <ButtonFav
+                className = {users.find(user => user.id === currentUserId)?.favorites.some(favId => favId === book.id)? 'btn-fav-yes' : 'btn-fav-no'}
+                label="⭐️" 
+                onClick={handleFavClick}
+              />
+            </div>
+          </div>
           <span style={{marginLeft:'10px', textAlign:'left'}}>Titre du livre *</span>
           <InputText 
             placeholder="Entrez le nom du livre" 
