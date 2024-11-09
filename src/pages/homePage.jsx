@@ -1,35 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import ButtonClassic from '../components/buttons/ButtonClassic'; // Lien vers le bouton
 import ModalClassic from '../components/modal/modalClassic'; // Lien vers la modal
 import InputText from '../components/fields/text-field'; // Lien vers la modal
 import ClicableRow from '../components/rows/ClicableRow'; // Lien vers la modal
 import RowType from '../components/rows/RowType'; // Lien vers RowType
 import ButtonPagination from '../components/buttons/ButtonPagination'; // Lien vers le bouton
+import { BookListContext } from '../contexts/BookListContext';
 
 
 const HomePage = () => {
 
 
-
-  // Fonctions pour sauvegarder et charger depuis le Local Storage
-  const saveToLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
-  };
-
-  const loadFromLocalStorage = (key) => {
-    const storedData = localStorage.getItem(key);
-    return storedData ? JSON.parse(storedData) : null;
-  };
-
-
-
-  const [categories, setCategories] = useState(() => loadFromLocalStorage('categories') || []);
-  const [compteurCat, setCompteurCat] = useState(() => loadFromLocalStorage('compteurCat') || 0);
+  const { categories, compteurCat, allBooks, setCategories, setCompteurCat } = useContext(BookListContext);
 
   const [visibleBooksSearchCount, setVisibleBooksSearchCount] = useState(4); // Affiche initialement 4 livres
 
 
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCategoryText, setNewCategoryText] = useState('');
   const [searchAllBooks, setSearchAllBooks] = useState('');
@@ -47,15 +33,6 @@ const HomePage = () => {
   
   
 
-
-  const allBooks = useMemo(() => {
-    return categories.flatMap(category =>
-      category.books.map(book => ({
-        ...book,
-        categoryTitle: category.title // Ajoute le titre de la catégorie au livre
-      }))
-    );
-  }, [categories]); // Recalculer la liste si les catégories changent
 
   const filteredBooks = useMemo(() => {
     // Ici, on effectue le filtrage des livres selon la recherche
@@ -82,17 +59,6 @@ const HomePage = () => {
     setNewCategoryText(''); // Réinitialiser le champ
     setIsModalOpen(false); // Fermer la modal
   };
-
-
-  // Sauvegarder les catégories dans le Local Storage à chaque changement
-  useEffect(() => {
-    saveToLocalStorage('compteurCat', compteurCat);
-  }, [compteurCat]);
-
-    // Sauvegarder les catégories dans le Local Storage à chaque changement
-    useEffect(() => {
-      saveToLocalStorage('categories', categories);
-    }, [categories]);
 
   
   // Fonction pour ajouter un livre à une catégorie spécifique

@@ -11,6 +11,7 @@ import { UserProvider } from './contexts/UserContext'; // Importer UserProvider
 
 //import AboutPage from './pages/AboutPage';
 import './design/app/App.css'; // Pour les styles généraux
+import { BookListProvider } from './contexts/BookListContext';
 
 const App = () => {
 
@@ -32,15 +33,18 @@ const App = () => {
       </div>
 
       {/* Contenu principal */}
-      <UserProvider>
-        <RowSettingsProvider>
-          <div className="content">
-            {activeTab === 'home' && <HomePage />}
-            {activeTab === 'favorites' && <FavoritePage />}
-            {activeTab === 'settings' && <SettingsPage />}
-          </div>
-        </RowSettingsProvider>
-      </UserProvider>
+
+      <BookListProvider>
+        <UserProvider>
+          <RowSettingsProvider>
+            <div className="content">
+              {activeTab === 'home' && <HomePage />}
+              {activeTab === 'favorites' && <FavoritePage />}
+              {activeTab === 'settings' && <SettingsPage />}
+            </div>
+          </RowSettingsProvider>
+        </UserProvider>
+      </BookListProvider>
     </div>
   );
 };
