@@ -1,40 +1,35 @@
-.btn-fav {
-  padding: 10px 20px;
-  border: 2px solid #b2dffb;
-  background-color: white;
-  color: #b2dffb;
+.btn-fav{
+  padding: 5px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
   margin: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .btn-fav-yes{
-  padding: 10px 20px;
-  border: 2px solid #b2dffb;
-  background-color: rgb(182, 209, 31);
-  color: #b2dffb;
+  background-color: rgb(237, 237, 96);
+  padding: 5px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
   margin: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .btn-fav-no{
-  padding: 10px 20px;
-  border: 2px solid #b2dffb;
-  background-color: rgb(164, 54, 54);
-  color: #b2dffb;
+  background-color: rgb(177, 177, 177);  padding: 5px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
   margin: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .btn-fav:hover {
@@ -45,6 +40,5 @@
 .btn-fav:disabled {
   background-color: #ccc;
   color: #666;
-  border: 2px solid #ccc;
   cursor: not-allowed;
 }

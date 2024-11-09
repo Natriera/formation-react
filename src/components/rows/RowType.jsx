@@ -99,12 +99,12 @@ const RowType = ({ categoryId, book, deleteRowFunction, updateRowFunction }) => 
         </ModalClassic>
 
         <ModalMedium isOpen={isUpdateModalOpen} onClose={handleUpdateBookCanceled}>
-          <div className = "div-container-bloc">
+          <div className = "div-container-bloc" style={{marginTop:'30px'}}>
               <h2 style={{marginLeft:'10px', marginBottom:'20px', textAlign:'left'}} >Modifier le livre {book.title}</h2>
             <div className = "div-container-align-right" style = {{width:'15%'}}>
               <ButtonFav
                 className = {users.find(user => user.id === currentUserId)?.favorites.some(favId => favId === book.id)? 'btn-fav-yes' : 'btn-fav-no'}
-                label="⭐️" 
+                label={users.find(user => user.id === currentUserId)?.favorites.some(favId => favId === book.id)? '🌟' : '⭐️'} 
                 onClick={handleFavClick}
               />
             </div>
