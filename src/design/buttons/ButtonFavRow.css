@@ -1,0 +1,29 @@
+/* Styles pour le bouton classique */
+.btn-fav-row {
+    padding: 5px;
+    background-color: rgba(237, 237, 96, 0.491);
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 10px;
+    text-align: center;
+    justify-self: flex-end;
+    border : none;
+
+  }
+  
+  .btn-fav-row:hover {
+    background-color: rgb(237, 237, 96);
+    color: white;
+    border-radius: 100%;
+    padding: 0px 5px;
+
+  }
+  
+  .btn-fav-row:disabled {
+    background-color: #ccc;
+    color: #666;
+    border: 2px solid #ccc;
+    cursor: not-allowed;
+  }
+  
