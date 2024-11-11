@@ -38,7 +38,7 @@ const FavoritePage = () => {
       <div className='div-container-align-center' style={{ width: '100%', borderRadius: '10px', marginBottom: '10px', backgroundColor: 'white' }}>
         <div
           className="book-list"
-          style={{ height: 'fit-content', overflowY: 'auto', paddingLeft:'10px', paddingRight:'10px' }}
+          style={{ maxHeight: '500px', overflowY: 'auto', paddingLeft:'10px', paddingRight:'10px' }}
           >
           {bookFavSearch.map((book) => (
             <FavRow 
