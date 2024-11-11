@@ -39,7 +39,7 @@ const App = () => {
           <RowSettingsProvider>
             <div className="content">
               {activeTab === 'home' && <HomePage />}
-              {activeTab === 'favorites' && <FavoritePage />}
+              {activeTab === 'favorites' && <FavoritePage navigateToHomePage={() => setActiveTab('home')} />}
               {activeTab === 'settings' && <SettingsPage />}
             </div>
           </RowSettingsProvider>
