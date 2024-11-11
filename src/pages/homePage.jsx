@@ -31,7 +31,6 @@ const HomePage = () => {
   // Découpe des catégories à afficher sur la page actuelle
   const currentCategories = categories.slice(indexOfFirstRow, indexOfLastRow);
   
-  
 
 
   const filteredBooks = useMemo(() => {

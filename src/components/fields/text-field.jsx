@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../design/fields/textField.css'; // Chemin vers le fichier CSS du champ de texte
 
-const TextField = ({ placeholder, value, onChange, style }) => {
+const TextField = ({ placeholder, value, onChange, style , label}) => {
   return (
     <div className="text-field-container">
       <input 
+        label={label}
         type="text" 
         className="text-field" 
         placeholder={placeholder} 
